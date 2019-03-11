@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Hero } from './hero';
 import { MessageService } from './message.service';
@@ -11,17 +11,13 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class HeroService {
   private heroesUrl = 'api/heroes'; // URL to web api
 
-
   constructor(
     private messageService: MessageService,
-    private http: HttpClient,
-    ) { }
+    private http: HttpClient, ) { }
 
     private log(message: string) {
       this.messageService.add(`HeroService: ${message}`);
